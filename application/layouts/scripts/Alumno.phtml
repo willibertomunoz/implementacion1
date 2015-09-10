@@ -1,0 +1,172 @@
+<?php
+session_start();
+$_SESSION["perfil"]=1;
+echo $this->doctype();
+$root = $this->baseUrl();
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php echo $this->headMeta(); ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <?php echo $this->headTitle(); ?>
+            <link rel="favicon" href="<?php echo $root; ?>/assets/images/favicon.png"/>
+            <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>
+            <link rel="stylesheet" href="<?php echo $root; ?>/assets/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="<?php echo $root; ?>/assets/css/font-awesome.min.css"/> 
+            <link rel="stylesheet" href="<?php echo $root; ?>/assets/css/bootstrap-theme.css" media="screen"/> 
+            <link rel="stylesheet" href="<?php echo $root; ?>/assets/css/style.css"/>
+            <!--<link rel="stylesheet" href="<?php echo $root; ?>/assets/css/popupbox.css" type="text/css" media="all"/>-->
+            <link rel='stylesheet' id='camera-css'  href='<?php echo $root; ?>/assets/css/camera.css' type='text/css' media='all'/> 
+
+            <link rel="stylesheet" href="<?php echo $root; ?>/assets/css/slidebar.css"/>
+            <script src="<?php echo $root; ?>/assets/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+                window.alert = function () {
+                };
+                var defaultCSS = document.getElementById("bootstrap-css");
+                function changeCSS(css) {
+                    if (css)
+                            $("head > link").filter(":first").replaceWith("<link rel="stylesheet" href="" + css + "" type="text / css" />");
+                            else
+                            $("head > link").filter(":first").replaceWith(defaultCSS);
+                }
+                $(document).ready(function () {
+                    var iframe_height = parseInt($("html").height());
+                    window.parent.postMessage(iframe_height, "http://bootsnipp.com");
+                });
+                function cambiar() {
+                alert('¡Su Sesion a terminado¡');
+                setTimeout('location="../"', 0);
+            }
+            </script>
+
+    </head>
+        <?php
+    if ($_SESSION["perfil"] != 2) {
+        echo "<script>cambiar()</script>";
+    }
+    ?>
+    <body>
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <!--Button for smallest screens -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="http://www.eia.edu.co">
+                        <img src="<?php echo $root; ?>/assets/images/logo.png" style="width: 150px;height: 110px;" ></a>
+                </div>
+
+            </div>
+            <header id="head" class="secondary">
+                <div class="container">
+                    <h1>Bienvenido <?php echo $this->nombre; ?></h1>
+                </div>
+            </header>
+        </div>
+        <?php if ($this->exitoso != NULL) { ?>
+            <div class="alert alert-success"><?php echo $this->exitoso; ?></div> <?php } ?> 
+        <div>
+            <nav class="navbar navbar-inverse sidebar" role="navigation" aling="left">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>      
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index">Home<span style="font-size:16px;"></span></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Materias <span class="caret"></span><span style="font-size:16px;"></span></a>
+                                <ul class="dropdown-menu forAnimate" role="menu">
+                                    <li><a href="<?php echo $root; ?>/Alumno/crearmateria">Crear</a></li>
+                                    <li><a href="<?php echo $root; ?>/Alumno/materiasfaltantes">Modificar</a></li>
+                                    <li><a href="<?php echo $root; ?>/Alumno/vermateria">Ver</a></li>
+                                </ul>
+                            </li>          
+                            <li ><a href="../">Salir<span style="font-size:16px;"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+            <!--</div>-->
+            <div class="container" align="center" style="width: 72%;">
+                <h1><?php echo $this->escape($this->title); ?></h1>
+                <?php echo $this->layout()->content; ?>
+            </div>
+        </div>
+        <footer>
+            <div class="container">
+                <br/><br/>
+            </div>
+            <div class="footer2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 panel">
+                            <div class="panel-body">
+<!--                                    <p class="simplenav">
+                                    <a href="index.html">Home</a> | 
+                                    <a href="about.html">About</a> |
+                                    <a href="courses.html">Courses</a> |
+                                    <a href="price.html">Price</a> |
+                                    <a href="videos.html">Videos</a> |
+                                    <a href="contact.html">Contact</a>
+                                </p>-->
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 panel">
+                            <div class="panel-body">
+                                <p class="text-right">
+                                    EIA <a href="http://eia.edu.co/" rel="develop">Ingeneria en sistemas Computacionales</a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /row of panels -->
+                </div>
+            </div>
+        </footer>
+
+        <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+        <script src="<?php echo $root; ?>/assets/js/modernizr-latest.js"></script> 
+        <script type='text/javascript' src='<?php echo $root; ?>/assets/js/jquery.min.js'></script>
+        <script type='text/javascript' src='<?php echo $root; ?>/assets/js/fancybox/jquery.fancybox.pack.js'></script>
+
+        <script type='text/javascript' src='<?php echo $root; ?>/assets/js/jquery.mobile.customized.min.js'></script>
+        <script type='text/javascript' src='<?php echo $root; ?>/assets/js/jquery.easing.1.3.js'></script> 
+        <script type='text/javascript' src='<?php echo $root; ?>/assets/js/camera.min.js'></script> 
+        <script src="<?php echo $root; ?>/assets/js/bootstrap.min.js"></script> 
+        <script src="<?php echo $root; ?>/assets/js/custom.js"></script>
+        <script>
+            jQuery(function () {
+
+                jQuery('#camera_wrap_4').camera({
+                    transPeriod: 500,
+                    time: 3000,
+                    height: '600',
+                    loader: 'false',
+                    pagination: true,
+                    thumbnails: false,
+                    hover: false,
+                    playPause: false,
+                    navigation: false,
+                    opacityOnGrid: false,
+                    imagePath: '<?php echo $root; ?>/assets/images/'
+                });
+
+            });
+
+        </script>
+       
+    </body>
+</html>
